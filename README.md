@@ -36,7 +36,7 @@
 
 ###### 示例
 
-```json
+```javacript
 // 成功
 {
     "success": true,
@@ -112,7 +112,7 @@ Discount 用 Object 类型来表示，属性如下表。
 
 ##### 示例
 
-```json
+```javacript
 // 成功
 {
     "success": true,
@@ -190,7 +190,7 @@ Discount 用 Object 类型来表示，属性如下表。
 
 ###### 示例
 
-```json
+```javacript
 // 成功
 {
     "success": true,
