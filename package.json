@@ -1,0 +1,15 @@
+{
+  "name": "code",
+  "version": "0.0.1",
+  "dependencies": {
+    "mysql": "2.15.0",
+    "mysql2": "^1.5.3",
+    "node-uuid": "^1.4.8",
+    "sequelize": "4.37.6",
+    "koa": "^2.5.1",
+    "koa-router": "^7.4.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa2-cors": "^2.0.5",
+    "koa-useragent": "^1.1.0"
+  }
+}
