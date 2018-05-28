@@ -250,6 +250,7 @@ Discount 用 Object 类型来表示，属性如下表。
 
 |key|type|description|
 |---|---|---|
+|token|String|用户id|
 |content|String|购物车内容|
 
 ###### content<Array>
@@ -268,6 +269,7 @@ Discount 用 Object 类型来表示，属性如下表。
 //Notice: content是字符串，使用json格式
 //options中是选项名以及对应的选中的选项
 {
+    token: "userid",
     content: `[{
         id: 0,
         amount: 1,
@@ -312,7 +314,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/order/cart
+[GET] api/order/cart?token=userid
 ```
 
 ##### 返回
@@ -361,7 +363,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/order/discount
+[GET] api/order/discount?token=userid
 ```
 
 ##### 返回
@@ -396,7 +398,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/order/redpack
+[GET] api/order/redpack?token=userid
 ```
 
 ##### 返回
@@ -430,7 +432,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/redpacks
+[GET] api/redpacks?token=userid
 ```
 
 ##### 返回
@@ -469,7 +471,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/order/address
+[GET] api/order/address?token=userid
 ```
 
 ##### 返回
@@ -516,6 +518,7 @@ Discount 用 Object 类型来表示，属性如下表。
 [POST]
 
 {
+    token: "userid"
     id: 1 //地址id
 }
 ```
@@ -544,7 +547,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
-[GET] api/addresses
+[GET] api/addresses?token=userid
 ```
 
 ##### 返回
@@ -585,6 +588,7 @@ Discount 用 Object 类型来表示，属性如下表。
 ##### 请求
 
 ```javascript
+// 这里的id是地址的id
 [GET] api/address/<id>
 ```
 
@@ -636,6 +640,7 @@ Discount 用 Object 类型来表示，属性如下表。
 [PUT]
 
 {
+    token: "userid"
     name: "leo",
     phone: "13566669999",
     address: "xxx省xx市xx区xx路xx号"
