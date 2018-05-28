@@ -7,7 +7,6 @@ module.exports=db.defineModel('ordert',{
     time:db.BIGINT,
     extra:db.TEXT,
     Uid:db.STRING(50),
-    foods:db.TEXT  ,
     disid:db.STRING(50),
     shopid:db.STRING(50)
 });
