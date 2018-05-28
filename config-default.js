@@ -1,6 +1,6 @@
  var config={
      dialect: 'mysql',
-     database: 'nodejs',
+     database: 'test',
      username: 'www',
      password: 'www',
      host: 'localhost',
