@@ -260,6 +260,9 @@ Discount 用 Object 类型来表示，属性如下表。
 |id|int|菜品id|
 |amount|int|菜品数量|
 |options|Object|选项|
+|info|string|地址id
+|time|text|时间
+|extra|text|备注
 
 ###### 请求示例
 
