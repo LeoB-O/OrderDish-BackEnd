@@ -148,7 +148,7 @@ var getFoodlist=async(ctx,next)=>
                 tempb["image"]=t["image"];
                 tempb["originPrice"]=t["price"];
                 tempb["salePrice"]=t["trueprice"];
-                var type=await Option.aggregate('type','DISTINCT',{plain:false});
+                var type=await Option.aggregate('type','DISTINCT',{where:{fid:tempb["id"]},plain:false});
                 let option1=[];
 
                 for(let d of type)
