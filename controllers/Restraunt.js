@@ -122,7 +122,6 @@ var getRlist=async(ctx,next)=>
 
 var getFoodlist=async(ctx,next)=>
 {
-    console.log("123");
     let rtn={};
     let data={};
     let catagory=[];
