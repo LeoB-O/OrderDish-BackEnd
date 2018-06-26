@@ -4,6 +4,11 @@ let food=model.Foods;
 let orderfood=model.Orderfood;
 let user=model.Users;
 
+
+const SERVER_ERROR=100;//各种类型数据库错误
+const TOKEN_ERROR=500;//用户名不存在
+const M_ERROR=404; //查无此内容
+
 function getError(err) {
     let rtn = {};
     let data = {};
@@ -64,7 +69,7 @@ var getcart=async(ctx,next)=>
     {
             let rtn={};
             let data={};
-            let token = ctx.request.body["token"];
+            let token = ctx.request.query["token"];
         // var token=ctx.params.id;
         let content=[];
 try {
@@ -120,7 +125,7 @@ ctx.response.body=rtn;
     };
 module.exports={
 
-    'GET /api/order/cart?token=userid':getcart,
+    'GET /api/order/cart':getcart,
     // 'GET /api/order/cart/:id':getcart,
     'POST /api/order/add2cart':addcart,
 

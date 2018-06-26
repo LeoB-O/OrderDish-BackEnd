@@ -4,6 +4,8 @@ let user=model.Users;
 let discount=model.Discounts;
 let order=model.Orders;
 
+const SERVER_ERROR=100;
+
 function getError(err) {
     let rtn = {};
     let data = {};
@@ -17,8 +19,8 @@ var getAllredpack=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    // let token = ctx.request.body["token"];
-    var token=ctx.params.id;
+    let token = ctx.request.query["token"];
+    // var token=ctx.params.id;
 
     let redpacks=[];
     try {
@@ -48,11 +50,10 @@ var getAllredpack=async(ctx,next)=>
 };//获取用户所有
 
 var getUesD=async(ctx,next)=>
-
 {
     let rtn={};
     let data={};
-    let token = ctx.request.body["token"];
+    let token = ctx.request.query["token"];
     let discount={};
     try {
         let uDid=await order.findOne({where:{$and:[{Uid:token},{state:0}]}});
@@ -80,9 +81,9 @@ var getAvaD=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    // let token = ctx.request.body["token"];
+    let token = ctx.request.query["token"];
 
-    var token=ctx.params.id;
+    // var token=ctx.params.id;
     let redpack=[];
     try {
         let Price=await order.findOne({where: {$and: [{Uid: token}, {state: 0}]},attributes:["price"]});
@@ -122,8 +123,8 @@ var getAvaD=async(ctx,next)=>
 };//获取当前订单可用
 
 module.exports={
-    'GET /api/redpacks?token=userid':getAllredpack,
-    'GET /api/order/redpack?token=userid':getAvaD,
+    'GET /api/redpacks':getAllredpack,
+    'GET /api/order/redpack':getAvaD,
     // 'GET /api/order/redpack/:id':getAvaD,
-    'GET /api/order/discount?token=userid':getUesD
+    'GET /api/order/discount':getUesD
 };

@@ -5,7 +5,7 @@ let  Discount=model.Discounts;
 let  Food=model.Foods;
 let  Option=model.Option;
 
- const SERVER_ERROR = 500; //服务器错误
+ const SERVER_ERROR = 100; //服务器错误
 
 
  function getError(err) {

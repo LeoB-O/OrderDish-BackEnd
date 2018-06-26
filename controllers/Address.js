@@ -2,6 +2,8 @@ let model=require("../model");
 let user=model.Users;
 let userAD=model.UserAddress;
 let order=model.Orders;
+
+const SERVER_ERROR=100;
 function getError(err) {
     let rtn = {};
     let data = {};
@@ -75,7 +77,7 @@ var getUad=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    let token = ctx.request.body["token"];
+    let token = ctx.request.query["token"];
     let address=[];
     try {
         var uAD=await userAD.findAll({where:{Uid:token},attributes:["id","address","phonenum","name"]});
@@ -212,7 +214,12 @@ var test=async(ctx,next)=>
 };
 
 module.exports={
-    'GET /api/order/address?token=userid':getCAD,
+    'POST /api/order/address':getCAD,
+    'GET /api/addresses ':getUad,
+    'GET /api/address/:id':getAdbyid,
+    'PUT /api/address':insertad,
+    'POST /api/address':editaD,
+    'DELETE /api/address':deletead,
     // 'GET /api/order/address/:id':getCAD,
     'GET /api/test':test,
 };
