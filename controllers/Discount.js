@@ -19,8 +19,8 @@ var getAllredpack=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    // let token = ctx.request.query["token"];
-    var token=ctx.params.id;
+    let token = ctx.request.query["token"];
+    // var token=ctx.params.id;
 
     let redpacks=[];
     try {
@@ -132,7 +132,7 @@ var getAvaD=async(ctx,next)=>
 };//获取当前订单可用
 
 module.exports={
-    'GET /api/redpacks/:id':getAllredpack,
+    'GET /api/redpacks/':getAllredpack,
     'GET /api/order/redpack':getAvaD,
     // 'GET /api/order/redpack/:id':getAvaD,
     'GET /api/order/discount':getUesD

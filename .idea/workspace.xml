@@ -20,10 +20,11 @@
       <file leaf-file-name="Discount.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/Discount.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="279">
+              <caret line="134" column="23" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
               <folding>
                 <element signature="n#!!block;n#getError#0" />
+                <element signature="e#1297#1890#0" />
                 <element signature="e#1936#2935#0" />
               </folding>
             </state>
@@ -197,7 +198,7 @@
       <workItem from="1529832943850" duration="9108000" />
       <workItem from="1529974317743" duration="2944000" />
       <workItem from="1530023001082" duration="134000" />
-      <workItem from="1530097187109" duration="972000" />
+      <workItem from="1530097187109" duration="1653000" />
     </task>
     <task id="LOCAL-00001" summary="orderfood">
       <created>1527516625315</created>
@@ -248,11 +249,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529976307430</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="url and token">
+      <created>1530098219313</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1530098219313</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59914000" />
+    <option name="totallyTimeSpent" value="60595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -741,10 +749,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/Discount.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="279">
+          <caret line="134" column="23" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
           <folding>
             <element signature="n#!!block;n#getError#0" />
+            <element signature="e#1297#1890#0" />
             <element signature="e#1936#2935#0" />
           </folding>
         </state>
