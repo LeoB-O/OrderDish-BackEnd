@@ -5,7 +5,7 @@ let discount=model.Discounts;
 let order=model.Orders;
 
 const SERVER_ERROR=100;
-
+const M_ERROR=404; //查无此内容
 function getError(err) {
     let rtn = {};
     let data = {};
@@ -19,12 +19,21 @@ var getAllredpack=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    let token = ctx.request.query["token"];
-    // var token=ctx.params.id;
+    // let token = ctx.request.query["token"];
+    var token=ctx.params.id;
 
     let redpacks=[];
     try {
         let rPs=await userdiscount.findAll({where:{Uid:token},attributes:["discountid"]});
+        if(rPs.length==0)
+        {
+            rtn["success"]=false;
+            data["errorcode"]=M_ERROR;
+            data["msg"]="do not hava user";
+            rtn["data"]=data;
+            ctx.response.body=rtn;
+            return
+        }
         for(let temp of rPs)
         {
             let temp_r={};
@@ -123,7 +132,7 @@ var getAvaD=async(ctx,next)=>
 };//获取当前订单可用
 
 module.exports={
-    'GET /api/redpacks':getAllredpack,
+    'GET /api/redpacks/:id':getAllredpack,
     'GET /api/order/redpack':getAvaD,
     // 'GET /api/order/redpack/:id':getAvaD,
     'GET /api/order/discount':getUesD
