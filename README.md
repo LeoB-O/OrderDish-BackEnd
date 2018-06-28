@@ -753,3 +753,41 @@ Discount 用 Object 类型来表示，属性如下表。
     }
 }
 ```
+
+### Admin
+
+#### 登陆
+
+##### 请求
+
+```javascript
+[POST]
+{
+    username: "username",
+    password: "passwd"
+}
+```
+
+##### 返回
+
+```javascript
+// 成功
+
+{
+    success: true,
+    data: {               // 根据这个token来判断登陆状态，需要在数据库记录
+        token: token,     // 之后的每次请求都会附上这个token
+        expireTime: 3600  // 过期时间，单位为秒
+    }
+}
+
+// 失败
+
+{
+    success: false,
+    data: {
+        errorcode: 1000,
+        msg: 'xxx error'
+    }
+}
+```
