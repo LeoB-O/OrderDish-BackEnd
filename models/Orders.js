@@ -7,10 +7,5 @@ module.exports=db.defineModel('ordert',{
     time:{type:db.BIGINT,allowNull:true},
     extra:{type:db.TEXT,allowNull:true},
     Uid:db.STRING(50),
-<<<<<<< HEAD
     disid:{type:db.STRING(50),allowNull:true},
-    shopid:db.STRING(50)
-=======
-    disid:db.STRING(50)
->>>>>>> origin/master
 });
