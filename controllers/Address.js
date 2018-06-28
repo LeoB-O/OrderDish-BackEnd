@@ -17,7 +17,7 @@ var getCAD=async(ctx,next)=>
 {
     let rtn={};
     let data={};
-    let token = ctx.request.body["token"];
+    let token = ctx.request.query["token"];
     // var token=ctx.params.id;
     try {
         let cAD=await order.findOne({where:{Uid:token,state:0},attributes:["addressid"]});
@@ -213,8 +213,28 @@ var test=async(ctx,next)=>
     }
 };
 
+var setAd=async(ctx,next)=>
+{
+    let token=ctx.request.body["token"];
+    let id=ctx.request.body["id"];
+    let rtn={};
+    let data={};
+
+
+    try {
+
+        await order.update({disid:id},{where:{Uid:token,state:0}});
+        rtn["success"]=true;
+        rtn["data"]=data;
+    }
+    catch (e) {
+        rtn=getError(e);
+        ctx.response.body=rtn;
+        return;
+    }
+}
 module.exports={
-    'POST /api/order/address':getCAD,
+    'GET /api/order/address':getCAD,
     'GET /api/addresses ':getUad,
     'GET /api/address/:id':getAdbyid,
     'PUT /api/address':insertad,
