@@ -52,14 +52,14 @@ var addcart=async(ctx,next)=> {
          {
              sum+=temp;
          }
+         let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
+         await order.destroy({where:{id:checkexists["id"]}});
+         await order.create({id:checkexists["id"],price:sum,addressid:defaultadid?defaultadid["dataValues"]["id"]:null,state:0,Uid:token})
          for(let c of content)
          {
              num2++;
              await orderfood.create({id:num2,fid:c.id,orderid:checkexists["id"],options:c.options,amount:c.amount})
          }
-         let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
-        await order.destroy({where:{id:checkexists["id"]}});
-         await order.create({id:checkexists["id"],price:sum,addressid:defaultadid["dataValues"]["id"],state:0,Uid:token})
      }
       else{
          for(let c of content)
