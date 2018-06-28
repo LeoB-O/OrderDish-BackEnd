@@ -82,12 +82,9 @@ var addcart=async(ctx,next)=> {
           num1++;
           await orderfood.create({id:num1,fid:c.id,orderid:num,options:JSON.stringify(c.options),amount:c.amount})
       }
-<<<<<<< HEAD
       let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
       await order.create({id:num,state:0,price:sum,addressid:defaultadid["dataValues"]["id"],Uid:token});
      }
-=======
->>>>>>> origin/master
   }
   catch (e) {
       rtn=getError(e);
