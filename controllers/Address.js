@@ -2,7 +2,7 @@ let model=require("../model");
 let user=model.Users;
 let userAD=model.UserAddress;
 let order=model.Orders;
-
+let userad=model.UserAddress;
 const SERVER_ERROR=100;
 function getError(err) {
     let rtn = {};
@@ -201,10 +201,10 @@ var deletead=async(ctx,next)=>
 
 var test=async(ctx,next)=>
 {
+    var token=ctx.params.id;
     try {
-        let mid=await userAD.max('id');
-        let id=++mid;
-        console.log(id++);
+        let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
+        console.log(defaultadid["dataValues"]["id"]);
     }
     catch (e) {
         rtn=getError(e);
@@ -241,5 +241,5 @@ module.exports={
     'POST /api/address':editaD,
     'DELETE /api/address':deletead,
     // 'GET /api/order/address/:id':getCAD,
-    'GET /api/test':test,
+    'GET /api/test/:id':test,
 };
