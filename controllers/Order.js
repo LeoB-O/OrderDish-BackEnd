@@ -3,6 +3,7 @@ let order=model.Orders;
 let food=model.Foods;
 let orderfood=model.Orderfood;
 let user=model.Users;
+let userad=model.UserAddress;
 
 
 const SERVER_ERROR=100;//各种类型数据库错误
@@ -28,17 +29,43 @@ var addcart=async(ctx,next)=> {
     let token = String(ctx.request.body["token"]);
     var checkuser = await user.findOne({where: {id: token}, attributes: ["id"]});
     if (!checkuser) {
-        data['errorcode'] = TOKEN_ERROR;
-        data['msg'] = 'no such user';
-        rtn['data'] = data;
-        ctx.response.body = rtn;
-        return;
+        // data['errorcode'] = TOKEN_ERROR;
+        // data['msg'] = 'no such user';
+        // rtn['data'] = data;
+        // ctx.response.body = rtn;
+        // return;
+        await user.create({id:token});
     }
   try {
-      for(let c of content)
+        let checkexists =await  order.findOne({where:{Uid:token,state:0},attributes:["id"]});
+     if (checkexists)
+     {
+         let num2=await orderfood.count();
+         await orderfood.destroy({where:{orderid:checkexists["id"]}});
+         for(let c of content)
+         {
+             var Price=await food.findOne({where:{id:c.id},attributes:["price"]});
+             price.push(Price["dataValues"]["price"]*c.amount);
+         }
+         let sum=0;
+         for(let temp of price)
+         {
+             sum+=temp;
+         }
+         for(let c of content)
+         {
+             num2++;
+             await orderfood.create({id:num2,fid:c.id,orderid:checkexists["id"],options:c.options,amount:c.amount})
+         }
+         let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
+        await order.destroy({where:{id:checkexists["id"]}});
+         await order.create({id:checkexists["id"],price:sum,addressid:defaultadid["dataValues"]["id"],state:0,Uid:token})
+     }
+      else{
+         for(let c of content)
       {
           var Price=await food.findOne({where:{id:c.id},attributes:["price"]});
-          price.push(Price["price"]*c.amount);
+          price.push(Price["dataValues"]["price"]*c.amount);
       }
       let sum=0;
       for(let temp of price)
@@ -55,6 +82,12 @@ var addcart=async(ctx,next)=> {
           num1++;
           await orderfood.create({id:num1,fid:c.id,orderid:num,options:JSON.stringify(c.options),amount:c.amount})
       }
+<<<<<<< HEAD
+      let defaultadid=await userad.findOne({where:{Uid:token},attributes:["id"]});
+      await order.create({id:num,state:0,price:sum,addressid:defaultadid["dataValues"]["id"],Uid:token});
+     }
+=======
+>>>>>>> origin/master
   }
   catch (e) {
       rtn=getError(e);
