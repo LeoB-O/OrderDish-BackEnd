@@ -111,7 +111,6 @@ var getAdbyid=async(ctx,next)=>
         let rtn={};
         let data={};
     var aid=ctx.params.id;
-
     try {
         var uad=await userAD.findAll({where:{id:aid},attributes:["name","phonenum","address"]});
         let address={};
