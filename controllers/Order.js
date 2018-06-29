@@ -58,7 +58,7 @@ var addcart=async(ctx,next)=> {
          for(let c of content)
          {
              num2++;
-             await orderfood.create({id:num2,fid:c.id,orderid:checkexists["id"],options:c.options,amount:c.amount})
+             await orderfood.create({id:num2,fid:c.id,orderid:checkexists["id"],options:JSON.stringify(c.options),amount:c.amount})
          }
      }
       else{
@@ -94,7 +94,8 @@ var addcart=async(ctx,next)=> {
 
   rtn["success"]=true;
     rtn["data"]=data;
-}  ;
+    ctx.response.body = rtn;
+}
 
 var getcart=async(ctx,next)=>
     {
@@ -154,10 +155,23 @@ rtn["data"]=data;
 ctx.response.body=rtn;
 
     };
+
+var setAddress = async(ctx, next) => {
+    let token = String(ctx.request.body['token']);
+    let id = ctx.request.body['id'];
+    try {
+        await order.update({addressid: id}, {where: {Uid: token}});
+        ctx.response.body = {success: true, data: {}};
+    } catch (e) {
+        rtn=getError(e);
+        ctx.response.body=rtn;
+        return;
+    }
+}
 module.exports={
 
     'GET /api/order/cart':getcart,
     // 'GET /api/order/cart/:id':getcart,
     'POST /api/order/add2cart':addcart,
-
+    'POST /api/order/address': setAddress
 }

@@ -89,6 +89,7 @@ var getUad=async(ctx,next)=>
             temp_a["name"]=temp["name"];
             temp_a["phone"]=temp["phonenum"];
             temp_a["address"]=temp["address"];
+            temp_a["avalible"] = true;
             address.push(temp_a);
         }
         rtn["success"]=true;
@@ -235,7 +236,7 @@ var setAd=async(ctx,next)=>
 }
 module.exports={
     'GET /api/order/address':getCAD,
-    'GET /api/addresses ':getUad,
+    'GET /api/addresses':getUad,
     'GET /api/address/:id':getAdbyid,
     'PUT /api/address':insertad,
     'POST /api/address':editaD,
